@@ -115,7 +115,9 @@ class ChatScreen extends StatelessWidget {
               ),
             );
           } else {
-            return Text('Loading .....');
+            return Center(
+              child: CircularProgressIndicator(),
+            );
           }
         });
   }
