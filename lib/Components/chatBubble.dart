@@ -56,7 +56,7 @@ class chatBubble2 extends StatelessWidget {
             bottomRight: Radius.circular(30),
             topLeft: Radius.circular(30),
           ),
-          color: Color.fromARGB(255, 108, 101, 126),
+          color: Color.fromARGB(255, 67, 56, 94),
         ),
         child: Text(
           message.message,
