@@ -1,4 +1,5 @@
 import 'package:chatapp/Cubits/ChatCubit/chat_cubit.dart';
+import 'package:chatapp/bloc/auth_bloc.dart';
 
 import '../Helper/showSnackBar.dart';
 import 'package:flutter/material.dart';
@@ -6,12 +7,9 @@ import 'package:chatapp/Conestance.dart';
 import 'package:chatapp/Screens/chatPage.dart';
 import 'package:chatapp/Components/button.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:chatapp/Screens/registerPage.dart';
 import 'package:chatapp/Components/textField.dart';
 import 'package:flutter_gutter/flutter_gutter.dart';
-import 'package:chatapp/Cubits/LoginCubit/login_cubit.dart';
-import 'package:chatapp/Cubits/LoginCubit/login_state.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
 String? email;
@@ -27,7 +25,7 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<LoginCubit, LoginState>(
+    return BlocConsumer<AuthBloc, AuthState>(
       listener: (context, state) {
         if (state is LoginLoadingState) {
           isLoading = true;
@@ -91,8 +89,10 @@ class LoginScreen extends StatelessWidget {
                       text: 'Login',
                       onTap: () async {
                         if (formKey.currentState!.validate()) {
-                          BlocProvider.of<LoginCubit>(context)
-                              .loginUser(email: email!, password: password!);
+                          BlocProvider.of<AuthBloc>(context).add(
+                            AuthLoginEvent(email: email!, password: password!),
+                          );
+
                           isLoading = false;
                         } else {}
                       },

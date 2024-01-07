@@ -1,6 +1,9 @@
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:chatapp/Cubits/authCubit/register_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:chatapp/Cubits/RegisterCubit/register_state.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
+
+
 
 class RegisterCubit extends Cubit<RegisterState> {
   RegisterCubit() : super(RegisterInitialState());
